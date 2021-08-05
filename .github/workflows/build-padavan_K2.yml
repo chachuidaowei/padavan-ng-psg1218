@@ -69,6 +69,8 @@ jobs:
     - name: Build Firmware
       run: |
         cd /opt/rt-n56u/trunk
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_UNBLOCKMUSIC/d' .config
+        echo "CONFIG_FIRMWARE_INCLUDE_UNBLOCKMUSIC=y" >> .config
         sudo ./clear_tree.sh
         sudo ./build_firmware.sh
         sudo mv -f images/*.trx /opt/images/
